@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{218A93C3-AF2B-4656-A355-2416E79F2616}</ProjectGuid>
+    <ProjectGuid>{9FBC6EBF-C624-41A0-9349-6E624485E291}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>HarrisContactManagerCSharp</RootNamespace>
     <AssemblyName>HarrisContactManagerCSharp</AssemblyName>
