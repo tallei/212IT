@@ -75,10 +75,19 @@
     </Compile>
     <Compile Include="DbConn.cs" />
     <Compile Include="PersonalContact.cs" />
+    <Compile Include="PersonalEditorcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalEditorcs.Designer.cs">
+      <DependentUpon>PersonalEditorcs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ContactMenu.resx">
       <DependentUpon>ContactMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalEditorcs.resx">
+      <DependentUpon>PersonalEditorcs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

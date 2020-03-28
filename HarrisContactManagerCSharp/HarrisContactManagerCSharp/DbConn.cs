@@ -10,7 +10,7 @@ namespace HarrisContactManagerCSharp
 {
     public class DbConn
     {
-        private string connString = "Server =db212it.cljolvmbl073.us-east-1.rds.amazonaws.com;User ID=admin;Password=BAita124.;Database=HarrisContactDb";
+        private string connString = "Server=db212it.cljolvmbl073.us-east-1.rds.amazonaws.com;User ID=admin;Password=BAita124.;Database=HarrisContactDb";
         public DataTable GetAllPersonal()
         {
             using (var conn = new MySqlConnection(connString))
@@ -19,7 +19,7 @@ namespace HarrisContactManagerCSharp
                 DataTable personalContactDt = new DataTable();
                 List<PersonalContact> personalContacts = new List<PersonalContact>();
                 using (var cmd = new MySqlCommand("CALL selectAllPersonal();", conn))
-                using (var reader = cmd.ExecuteReaderAsync())
+                using (var reader = cmd.ExecuteReader())
                     while (reader.Read())
                     {
 
@@ -33,7 +33,7 @@ namespace HarrisContactManagerCSharp
                             ContactAddr2 = reader.GetString(5),
                             ContactCity = reader.GetString(6),
                             ContactPostcode = reader.GetString(7),
-                            PersonalTel = reader.GetString(5),
+                            PersonalTel = reader.GetString(8),
 
                         });
 
@@ -75,7 +75,7 @@ namespace HarrisContactManagerCSharp
 
         public void InsertPersonal(PersonalContact personalContact)
         {
-            using (var conn = new MySqlConnection(connString))
+            using (var conn = new MySqlConnection(connString))  // INSERT PERSONAL TAKES PERSONAL CONTACT AS A PERIMETER 
             {
 
                 conn.Open();
@@ -109,7 +109,7 @@ namespace HarrisContactManagerCSharp
                 using (var cmd = new MySqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "CALL updatePersonal(@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8);";
+                    cmd.CommandText = "CALL updatePersonal(@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9);";
                     cmd.Parameters.AddWithValue("p1", personalContact.ContactID);
                     cmd.Parameters.AddWithValue("p2", personalContact.ContactFname);
                     cmd.Parameters.AddWithValue("p3", personalContact.ContactLname);

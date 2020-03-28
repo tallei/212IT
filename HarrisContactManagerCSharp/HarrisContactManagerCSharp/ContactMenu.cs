@@ -16,5 +16,11 @@ namespace HarrisContactManagerCSharp
         {
             InitializeComponent();
         }
+
+        private void btn_personal_Click(object sender, EventArgs e)
+        {
+            PersonalEditorcs personal = new PersonalEditorcs();
+            personal.Show(); 
+        }
     }
 }
