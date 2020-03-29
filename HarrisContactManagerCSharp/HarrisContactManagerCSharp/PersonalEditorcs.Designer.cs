@@ -68,6 +68,8 @@
             this.dGVPersonalRecords.TabIndex = 1;
             this.dGVPersonalRecords.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVPersonalRecords_CellClick);
             this.dGVPersonalRecords.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVPersonalRecords_CellContentClick);
+            this.dGVPersonalRecords.SelectionChanged += new System.EventHandler(this.dGVPersonalRecords_SelectionChanged);
+            this.dGVPersonalRecords.Click += new System.EventHandler(this.dGVPersonalRecords_Click);
             // 
             // btnRefresh
             // 
@@ -129,7 +131,7 @@
             this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Save Selected ";
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // tbFname
             // 

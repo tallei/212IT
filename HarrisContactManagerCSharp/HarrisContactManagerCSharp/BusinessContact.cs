@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace HarrisContactManagerCSharp
 {
-   public  class PersonalContact: Contact
-   {
-        public string PersonalTel { get; set; }
-   }
+    class BusinessContact : Contact
+    {
+
+        public string BusinessTel { get; set; }
+
+    }
 }

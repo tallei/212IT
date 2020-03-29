@@ -22,3 +22,4 @@ C:\Users\Administrator\source\repos\HarrisContactManagerCSharp\HarrisContactMana
 C:\Users\Administrator\source\repos\HarrisContactManagerCSharp\HarrisContactManagerCSharp\obj\Debug\HarrisContactManagerCSharp.csproj.CopyComplete
 C:\Users\Administrator\source\repos\HarrisContactManagerCSharp\HarrisContactManagerCSharp\obj\Debug\HarrisContactManagerCSharp.exe
 C:\Users\Administrator\source\repos\HarrisContactManagerCSharp\HarrisContactManagerCSharp\obj\Debug\HarrisContactManagerCSharp.pdb
+C:\Users\Administrator\source\repos\HarrisContactManagerCSharp\HarrisContactManagerCSharp\obj\Debug\HarrisContactManagerCSharp.BusinessEditor.resources

@@ -20,7 +20,19 @@ namespace HarrisContactManagerCSharp
         private void btn_personal_Click(object sender, EventArgs e)
         {
             PersonalEditorcs personal = new PersonalEditorcs();
-            personal.Show(); 
+            personal.Show();
+            
+        }
+
+        private void btn_business_Click(object sender, EventArgs e)
+        {
+            BusinessEditor business = new BusinessEditor();
+            business.Show();
+        }
+
+        private void ContactMenu_Load(object sender, EventArgs e)
+        {
+           
         }
     }
 }

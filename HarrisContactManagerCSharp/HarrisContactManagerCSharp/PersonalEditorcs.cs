@@ -95,11 +95,6 @@ namespace HarrisContactManagerCSharp
             tbTel.Text = dGVPersonalRecords.SelectedCells[8].Value.ToString();
         }
 
-        private void btnSaveNew_Click(object sender, EventArgs e) 
-        {
-            
-        }
-
         private void dGVPersonalRecords_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -111,7 +106,8 @@ namespace HarrisContactManagerCSharp
             personalContact.ContactFname = tbFname.Text;
             personalContact.ContactLname = tbLname.Text;
             personalContact.ContactEmail = tbEmail.Text;
-            personalContact.ContactAddr1 = tbAddr2.Text;
+            personalContact.ContactAddr1 = tbAddr1.Text;
+            personalContact.ContactAddr2 = tbAddr2.Text;
             personalContact.ContactCity = tbCity.Text;
             personalContact.ContactPostcode = tbPostcode.Text;
             personalContact.PersonalTel = tbTel.Text;
@@ -130,7 +126,7 @@ namespace HarrisContactManagerCSharp
             dGVPersonalRecords.DataSource = dbConn.GetAllPersonal();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void BtnSave_Click(object sender, EventArgs e)
         {
             int index = Int32.Parse(dGVPersonalRecords.SelectedCells[0].Value.ToString());
             PersonalContact personalContact = new PersonalContact();
@@ -162,7 +158,7 @@ namespace HarrisContactManagerCSharp
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            string message = "Are you sure you want o delete?";
+            string message = "Are you sure you want to delete?";
             string caption = "Do you want to delete the contact with the record  with id of " +  Int32.Parse(dGVPersonalRecords.SelectedCells[0].Value.ToString());
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             DialogResult result;
@@ -173,6 +169,16 @@ namespace HarrisContactManagerCSharp
                 dbConn .DeletePersonal(Int32.Parse(dGVPersonalRecords.SelectedCells[0].Value.ToString()));
                 dGVPersonalRecords.DataSource = dbConn.GetAllPersonal(); 
             }
+
+        }
+
+        private void dGVPersonalRecords_SelectionChanged(object sender, EventArgs e)
+        {
+      
+        }
+
+        private void dGVPersonalRecords_Click(object sender, EventArgs e)
+        {
 
         }
     }

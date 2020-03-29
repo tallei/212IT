@@ -11,6 +11,8 @@ namespace HarrisContactManagerCSharp
     public class DbConn
     {
         private string connString = "Server=db212it.cljolvmbl073.us-east-1.rds.amazonaws.com;User ID=admin;Password=BAita124.;Database=HarrisContactDb";
+
+
         public DataTable GetAllPersonal()
         {
             using (var conn = new MySqlConnection(connString))
@@ -147,6 +149,148 @@ namespace HarrisContactManagerCSharp
                 }
             }
         }
+
+
+        public DataTable GetAllBusiness()
+        {
+            using (var conn = new MySqlConnection(connString))
+            {
+                conn.Open();
+                DataTable businessContactDt = new DataTable();
+                List<BusinessContact> businessContacts = new List<BusinessContact>();
+                using (var cmd = new MySqlCommand("CALL selectAllBusiness();", conn))
+                using (var reader = cmd.ExecuteReader())
+                    while (reader.Read())
+                    {
+
+                        businessContacts.Add(new BusinessContact
+                        {
+                            ContactID = reader.GetInt32(0),
+                            ContactFname = reader.GetString(1),
+                            ContactLname = reader.GetString(2),
+                            ContactEmail = reader.GetString(3),
+                            ContactAddr1 = reader.GetString(4),
+                            ContactAddr2 = reader.GetString(5),
+                            ContactCity = reader.GetString(6),
+                            ContactPostcode = reader.GetString(7),
+                            BusinessTel = reader.GetString(8),
+
+                        });
+
+
+
+
+
+
+                    }
+                businessContactDt.Columns.Add("ContactID");
+                businessContactDt.Columns.Add("ContactFname");
+                businessContactDt.Columns.Add("ContactLname");
+                businessContactDt.Columns.Add("ContactEmail");
+                businessContactDt.Columns.Add("ContactAddr1");
+                businessContactDt.Columns.Add("ContactAddr2");
+                businessContactDt.Columns.Add("ContactCity");
+                businessContactDt.Columns.Add("ContactPostcode");
+                businessContactDt.Columns.Add("BusinessTel");
+
+                foreach (var item in businessContacts)
+                {
+                    var row = businessContactDt.NewRow();
+                    row["ContactID"] = item.ContactID;
+                    row["ContactFname"] = item.ContactFname;
+                    row["ContactLname"] = item.ContactLname;
+                    row["ContactEmail"] = item.ContactEmail;
+                    row["ContactAddr1"] = item.ContactAddr1;
+                    row["ContactAddr2"] = item.ContactAddr2;
+                    row["ContactCity"] = item.ContactCity;
+                    row["ContactPostcode"] = item.ContactPostcode;
+                    row["BusinessTel"] = item.BusinessTel;
+
+                    businessContactDt.Rows.Add(row);
+                }
+                return businessContactDt;
+            }
+
+        }
+
+        public void InsertBusiness(BusinessContact businessContact)
+        {
+            using (var conn = new MySqlConnection(connString))  // INSERT Business TAKES PERSONAL CONTACT AS A PERIMETER 
+            {
+
+                conn.Open();
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "CALL insertBusiness(@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8);";
+                    cmd.Parameters.AddWithValue("p1", businessContact.ContactFname);
+                    cmd.Parameters.AddWithValue("p2", businessContact.ContactLname);
+                    cmd.Parameters.AddWithValue("p3", businessContact.ContactEmail);
+                    cmd.Parameters.AddWithValue("p4", businessContact.ContactAddr1);
+                    cmd.Parameters.AddWithValue("p5", businessContact.ContactAddr2);
+                    cmd.Parameters.AddWithValue("p6", businessContact.ContactCity);
+                    cmd.Parameters.AddWithValue("p7", businessContact.ContactPostcode);
+                    cmd.Parameters.AddWithValue("p8", businessContact.BusinessTel);
+                    cmd.ExecuteNonQuery();
+
+
+
+
+                }
+            }
+        }
+    
+
+
+        public void UpdateBusiness(BusinessContact businessContact)
+        {
+            using (var conn = new MySqlConnection(connString))
+            {
+
+                conn.Open();
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "CALL updateBusiness(@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9);";
+                    cmd.Parameters.AddWithValue("p1", businessContact.ContactID);
+                    cmd.Parameters.AddWithValue("p2", businessContact.ContactFname);
+                    cmd.Parameters.AddWithValue("p3", businessContact.ContactLname);
+                    cmd.Parameters.AddWithValue("p4", businessContact.ContactEmail);
+                    cmd.Parameters.AddWithValue("p5", businessContact.ContactAddr1);
+                    cmd.Parameters.AddWithValue("p6", businessContact.ContactAddr2);
+                    cmd.Parameters.AddWithValue("p7", businessContact.ContactCity);
+                    cmd.Parameters.AddWithValue("p8", businessContact.ContactPostcode);
+                    cmd.Parameters.AddWithValue("p9", businessContact.BusinessTel);
+                    cmd.ExecuteNonQuery();
+
+
+
+
+                }
+            }
+        }
+
+        public void DeleteBusiness(int id)
+        {
+            using (var conn = new MySqlConnection(connString))
+            {
+
+                conn.Open();
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "CALL deleteBusiness(@p1;";
+                    cmd.Parameters.AddWithValue("p1", id);
+                    cmd.ExecuteNonQuery();
+
+
+
+
+                }
+            }
+        }
+
     }
+
 }
 
