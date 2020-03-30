@@ -59,7 +59,6 @@
             this.dGVPersonalRecords.AllowUserToResizeColumns = false;
             this.dGVPersonalRecords.AllowUserToResizeRows = false;
             this.dGVPersonalRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dGVPersonalRecords.Enabled = false;
             this.dGVPersonalRecords.Location = new System.Drawing.Point(22, 225);
             this.dGVPersonalRecords.Name = "dGVPersonalRecords";
             this.dGVPersonalRecords.ReadOnly = true;

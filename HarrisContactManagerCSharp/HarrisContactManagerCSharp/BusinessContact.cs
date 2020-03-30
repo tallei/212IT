@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HarrisContactManagerCSharp
 {
-    class BusinessContact : Contact
+    public class BusinessContact : Contact
     {
 
         public string BusinessTel { get; set; }

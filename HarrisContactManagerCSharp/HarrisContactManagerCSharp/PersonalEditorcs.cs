@@ -84,6 +84,7 @@ namespace HarrisContactManagerCSharp
 
         private void dGVPersonalRecords_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+        
             int index = Int32.Parse(dGVPersonalRecords.SelectedCells[0].Value.ToString());
             tbFname.Text = dGVPersonalRecords.SelectedCells[1].Value.ToString();
             tbLname.Text = dGVPersonalRecords.SelectedCells[2].Value.ToString();
@@ -166,7 +167,7 @@ namespace HarrisContactManagerCSharp
             if  (result == DialogResult.Yes)
             {
 
-                dbConn .DeletePersonal(Int32.Parse(dGVPersonalRecords.SelectedCells[0].Value.ToString()));
+                dbConn.DeletePersonal(Int32.Parse(dGVPersonalRecords.SelectedCells[0].Value.ToString()));
                 dGVPersonalRecords.DataSource = dbConn.GetAllPersonal(); 
             }
 

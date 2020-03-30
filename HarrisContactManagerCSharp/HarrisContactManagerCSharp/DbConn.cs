@@ -75,12 +75,12 @@ namespace HarrisContactManagerCSharp
 
         }
 
-        public void InsertPersonal(PersonalContact personalContact)
+        public async void InsertPersonal(PersonalContact personalContact) // Inolve asynchronise method 
         {
-            using (var conn = new MySqlConnection(connString))  // INSERT PERSONAL TAKES PERSONAL CONTACT AS A PERIMETER 
+            using (var conn = new MySqlConnection(connString))  // INSERT PERSONAL TAKES PERSONAL CONTACT AS A PERIMETER And enable connection
             {
 
-                conn.Open();
+               await  conn.OpenAsync(); // openness connection to asyn 
                 using (var cmd = new MySqlCommand())
                 {
                     cmd.Connection = conn;
@@ -93,7 +93,7 @@ namespace HarrisContactManagerCSharp
                     cmd.Parameters.AddWithValue("p6", personalContact.ContactCity);
                     cmd.Parameters.AddWithValue("p7", personalContact.ContactPostcode);
                     cmd.Parameters.AddWithValue("p8", personalContact.PersonalTel);
-                    cmd.ExecuteNonQuery();
+                   await  cmd.ExecuteNonQueryAsync(); // await command shows parameters are passed and query will be awaited to complete
 
 
 
@@ -102,12 +102,12 @@ namespace HarrisContactManagerCSharp
             }
         }
 
-        public void UpdatePersonal(PersonalContact personalContact)
-        {
+        public async  void UpdatePersonal(PersonalContact personalContact) // added async method for multi threading
+        { 
             using (var conn = new MySqlConnection(connString))
             {
 
-                conn.Open();
+               await  conn.OpenAsync(); // openness connection to asyn 
                 using (var cmd = new MySqlCommand())
                 {
                     cmd.Connection = conn;
@@ -121,7 +121,7 @@ namespace HarrisContactManagerCSharp
                     cmd.Parameters.AddWithValue("p7", personalContact.ContactCity);
                     cmd.Parameters.AddWithValue("p8", personalContact.ContactPostcode);
                     cmd.Parameters.AddWithValue("p9", personalContact.PersonalTel);
-                    cmd.ExecuteNonQuery();
+                   await  cmd.ExecuteNonQueryAsync();
 
 
 
@@ -130,18 +130,18 @@ namespace HarrisContactManagerCSharp
             }
         }
 
-        public void DeletePersonal(int id)
+        public async void DeletePersonal(int id) // added async method for multi threading
         {
             using (var conn = new MySqlConnection(connString))
             {
 
-                conn.Open();
+              await   conn.OpenAsync();
                 using (var cmd = new MySqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "CALL deletePersonal(@p1;";
+                    cmd.CommandText = "CALL deletePersonal(@p1);";
                     cmd.Parameters.AddWithValue("p1", id);
-                    cmd.ExecuteNonQuery();
+                   await  cmd.ExecuteNonQueryAsync();
 
 
 
@@ -213,12 +213,12 @@ namespace HarrisContactManagerCSharp
 
         }
 
-        public void InsertBusiness(BusinessContact businessContact)
+        public async void InsertBusiness(BusinessContact businessContact)
         {
             using (var conn = new MySqlConnection(connString))  // INSERT Business TAKES PERSONAL CONTACT AS A PERIMETER 
             {
 
-                conn.Open();
+               await  conn.OpenAsync();
                 using (var cmd = new MySqlCommand())
                 {
                     cmd.Connection = conn;
@@ -231,7 +231,7 @@ namespace HarrisContactManagerCSharp
                     cmd.Parameters.AddWithValue("p6", businessContact.ContactCity);
                     cmd.Parameters.AddWithValue("p7", businessContact.ContactPostcode);
                     cmd.Parameters.AddWithValue("p8", businessContact.BusinessTel);
-                    cmd.ExecuteNonQuery();
+                   await  cmd.ExecuteNonQueryAsync();
 
 
 
@@ -242,12 +242,12 @@ namespace HarrisContactManagerCSharp
     
 
 
-        public void UpdateBusiness(BusinessContact businessContact)
+        public async void UpdateBusiness(BusinessContact businessContact)
         {
             using (var conn = new MySqlConnection(connString))
             {
 
-                conn.Open();
+               await  conn.OpenAsync();
                 using (var cmd = new MySqlCommand())
                 {
                     cmd.Connection = conn;
@@ -261,7 +261,7 @@ namespace HarrisContactManagerCSharp
                     cmd.Parameters.AddWithValue("p7", businessContact.ContactCity);
                     cmd.Parameters.AddWithValue("p8", businessContact.ContactPostcode);
                     cmd.Parameters.AddWithValue("p9", businessContact.BusinessTel);
-                    cmd.ExecuteNonQuery();
+                    await cmd.ExecuteNonQueryAsync();
 
 
 
@@ -270,18 +270,18 @@ namespace HarrisContactManagerCSharp
             }
         }
 
-        public void DeleteBusiness(int id)
+        public async void DeleteBusiness(int id)
         {
             using (var conn = new MySqlConnection(connString))
             {
 
-                conn.Open();
+               await  conn.OpenAsync();
                 using (var cmd = new MySqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "CALL deleteBusiness(@p1;";
+                    cmd.CommandText = "CALL deleteBusiness(@p1);";
                     cmd.Parameters.AddWithValue("p1", id);
-                    cmd.ExecuteNonQuery();
+                   await  cmd.ExecuteNonQueryAsync();
 
 
 
