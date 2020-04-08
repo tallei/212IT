@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace HarrisContactManagerCSharp
 {
-    public abstract class Contact
+    public abstract class Contact // created class contact,abstract is used to avoid class initialiazation but only initialize inherited classes
     {
-        public int ContactID { get; set; }
-        public string ContactFname { get; set; }
+        // elements or attributes  
+        public int ContactID { get; set; } // get method returns value of ContactID, set give value to the name(ContactID)
+        public string ContactFname { get; set; } // input values  in string type 
         public string ContactLname { get; set; }
         public string ContactEmail { get; set; }
           public string ContactAddr1 { get; set; }

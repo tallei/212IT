@@ -8,26 +8,28 @@ using System.Threading.Tasks;
 
 namespace HarrisContactManagerCSharp
 {
-    public class DbConn
+    public class DbConn // assigned public access modifier to allow access to other classes
+
     {
+       //string connection for establishing the database and other required parameters for the connection and set access to private
         private string connString = "Server=db212it.cljolvmbl073.us-east-1.rds.amazonaws.com;User ID=admin;Password=BAita124.;Database=HarrisContactDb";
 
 
-        public DataTable GetAllPersonal()
+        public DataTable GetAllPersonal() // help to populate datagrid view to display all personal contact records
         {
-            using (var conn = new MySqlConnection(connString))
+            using (var conn = new MySqlConnection(connString))  //create variable, allowing to use mysql connection
             {
-                conn.Open();
-                DataTable personalContactDt = new DataTable();
-                List<PersonalContact> personalContacts = new List<PersonalContact>();
-                using (var cmd = new MySqlCommand("CALL selectAllPersonal();", conn))
-                using (var reader = cmd.ExecuteReader())
+                conn.Open(); // open connection
+                DataTable personalContactDt = new DataTable();  //data table creation
+                List<PersonalContact> personalContacts = new List<PersonalContact>(); // list of personal contact 
+                using (var cmd = new MySqlCommand("CALL selectAllPersonal();", conn)) // cmd is an optional variable name 
+                using (var reader = cmd.ExecuteReader()) // read personal data
                     while (reader.Read())
                     {
 
-                        personalContacts.Add(new PersonalContact
+                        personalContacts.Add(new PersonalContact // Add all personal attributes 
                         {
-                            ContactID = reader.GetInt32(0),
+                            ContactID = reader.GetInt32(0), // Numbering commence from 0-8
                             ContactFname = reader.GetString(1),
                             ContactLname = reader.GetString(2),
                             ContactEmail = reader.GetString(3),
@@ -44,8 +46,8 @@ namespace HarrisContactManagerCSharp
 
 
 
-                    }
-                personalContactDt.Columns.Add("ContactID");
+                    } // add listed above procedures to data table and enable appearing in page
+                personalContactDt.Columns.Add("ContactID"); //  data column has same name with database 
                 personalContactDt.Columns.Add("ContactFname");
                 personalContactDt.Columns.Add("ContactLname");
                 personalContactDt.Columns.Add("ContactEmail");
@@ -56,9 +58,9 @@ namespace HarrisContactManagerCSharp
                 personalContactDt.Columns.Add("PersonalTel");
 
                 foreach (var item in personalContacts)
-                {
+                { // place data from list into data table
                     var row = personalContactDt.NewRow();
-                    row["ContactID"] = item.ContactID;
+                    row["ContactID"] = item.ContactID; // name in bracket tells which column to place the data
                     row["ContactFname"] = item.ContactFname;
                     row["ContactLname"] = item.ContactLname;
                     row["ContactEmail"] = item.ContactEmail;
@@ -68,14 +70,14 @@ namespace HarrisContactManagerCSharp
                     row["ContactPostcode"] = item.ContactPostcode;
                     row["PersonalTel"] = item.PersonalTel;
 
-                    personalContactDt.Rows.Add(row);
+                    personalContactDt.Rows.Add(row); // allow adding the data 
                 }
-                return personalContactDt;
+                return personalContactDt; //returning type of the data table in line 18
             }
 
         }
 
-        public async void InsertPersonal(PersonalContact personalContact) // Inolve asynchronise method 
+        public async void InsertPersonal(PersonalContact personalContact) // Inolve asynchronise method  
         {
             using (var conn = new MySqlConnection(connString))  // INSERT PERSONAL TAKES PERSONAL CONTACT AS A PERIMETER And enable connection
             {
@@ -84,7 +86,7 @@ namespace HarrisContactManagerCSharp
                 using (var cmd = new MySqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "CALL insertPersonal(@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8);";
+                    cmd.CommandText = "CALL insertPersonal(@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8);"; // call stored procedure in heidi 
                     cmd.Parameters.AddWithValue("p1", personalContact.ContactFname);
                     cmd.Parameters.AddWithValue("p2", personalContact.ContactLname);
                     cmd.Parameters.AddWithValue("p3", personalContact.ContactEmail);
@@ -103,6 +105,8 @@ namespace HarrisContactManagerCSharp
         }
 
         public async  void UpdatePersonal(PersonalContact personalContact) // added async method for multi threading
+       
+            // duplicate of insert personal but changed codes to update version. 
         { 
             using (var conn = new MySqlConnection(connString))
             {
@@ -111,7 +115,7 @@ namespace HarrisContactManagerCSharp
                 using (var cmd = new MySqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "CALL updatePersonal(@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9);";
+                    cmd.CommandText = "CALL updatePersonal(@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9);"; // call stored procedure 
                     cmd.Parameters.AddWithValue("p1", personalContact.ContactID);
                     cmd.Parameters.AddWithValue("p2", personalContact.ContactFname);
                     cmd.Parameters.AddWithValue("p3", personalContact.ContactLname);
@@ -121,7 +125,7 @@ namespace HarrisContactManagerCSharp
                     cmd.Parameters.AddWithValue("p7", personalContact.ContactCity);
                     cmd.Parameters.AddWithValue("p8", personalContact.ContactPostcode);
                     cmd.Parameters.AddWithValue("p9", personalContact.PersonalTel);
-                   await  cmd.ExecuteNonQueryAsync();
+                   await  cmd.ExecuteNonQueryAsync(); // statement accomplished 
 
 
 
@@ -130,7 +134,7 @@ namespace HarrisContactManagerCSharp
             }
         }
 
-        public async void DeletePersonal(int id) // added async method for multi threading
+        public async void DeletePersonal(int id) // added async method for multi threading in order to offload processing of the software
         {
             using (var conn = new MySqlConnection(connString))
             {
@@ -141,7 +145,7 @@ namespace HarrisContactManagerCSharp
                     cmd.Connection = conn;
                     cmd.CommandText = "CALL deletePersonal(@p1);";
                     cmd.Parameters.AddWithValue("p1", id);
-                   await  cmd.ExecuteNonQueryAsync();
+                   await  cmd.ExecuteNonQueryAsync();  
 
 
 
@@ -151,7 +155,7 @@ namespace HarrisContactManagerCSharp
         }
 
 
-        public DataTable GetAllBusiness()
+        public DataTable GetAllBusiness() // help to populate datagrid view to display all business contact records
         {
             using (var conn = new MySqlConnection(connString))
             {

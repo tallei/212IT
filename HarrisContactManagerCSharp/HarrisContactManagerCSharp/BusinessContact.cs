@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace HarrisContactManagerCSharp
 {
-    public class BusinessContact : Contact
+    public class BusinessContact : Contact  // Business version inherits overall properties of Contact as well
     {
 
-        public string BusinessTel { get; set; }
+        public string BusinessTel { get; set; } // BusinessTel given from UML assigned as the Contact property
 
     }
 }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace HarrisContactManagerCSharp
 {
-   public  class PersonalContact: Contact
+   public  class PersonalContact: Contact // Personal Contact inherits overall properties of Contact
    {
-        public string PersonalTel { get; set; }
+        public string PersonalTel { get; set; } // PersonalTel assigned as the Contact property
    }
 }

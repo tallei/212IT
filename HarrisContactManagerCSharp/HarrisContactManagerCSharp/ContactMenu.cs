@@ -10,17 +10,17 @@ using System.Windows.Forms;
 
 namespace HarrisContactManagerCSharp
 {
-    public partial class ContactMenu : Form
+    public partial class ContactMenu : Form 
     {
         public ContactMenu()
         {
-            InitializeComponent();
+            InitializeComponent(); // method that is automatically created and managed  by windows forms 
         }
 
         private void btn_personal_Click(object sender, EventArgs e)
         {
-            PersonalEditorcs personal = new PersonalEditorcs();
-            personal.Show();
+            PersonalEditorcs personal = new PersonalEditorcs();  // open other screen from this form (initializing the class)
+            personal.Show(); // visibility in windows forms
             
         }
 
