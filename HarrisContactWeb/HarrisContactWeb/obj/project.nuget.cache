@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5XXtiwEP0ADYZFWktnyU1YT3/EqrtHj7+XwzKHE1oZraJuaKN0dtey8KNeqwhY+l5ilOcek6sAuJr4WQDZdzdQ==",
+  "dgSpecHash": "pEN/gocQTekkToA9LYfQcmym2Yh6m522qGaDiizU+i2fIA6pX4Rv4mOT+8KiyFvJrZ/sNT4RmujiHeB43lMXnw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Administrator\\source\\repos\\HarrisContactWeb\\HarrisContactWeb\\HarrisContactWeb.csproj",
+  "projectFilePath": "C:\\Users\\Administrator\\Documents\\GitHub\\212IT\\HarrisContactWeb\\HarrisContactWeb\\HarrisContactWeb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
